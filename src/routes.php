@@ -5,18 +5,18 @@ $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
 
 require __DIR__ . '/../vendor/autoload.php';
-require '../src/clases/usuarioApi.php';
+require '../src/clases/peliculaApi.php';
 
 $app = new \Slim\App(["settings" => $config]);
 
 //get
 
-$app->group('/usuario', function () {
+$app->group('/pelicula', function () {
  
-    $this->get('/', \usuarioApi::class . ':traerTodos');
+    $this->get('/', \PeliculaApi::class . ':traerTodos');
    
-    $this->get('/{id}', \usuarioApi::class . ':traerUno');
-    $this->post('/', \usuarioApi::class . ':CargarUno');
+    $this->get('/{id}', \PeliculaApi::class . ':traerUno');
+    $this->post('/', \PeliculaApi::class . ':CargarUno');
     //$this->delete('/', \usuarioApi::class . ':BorrarUno');
     //$this->put('/', \usuarioApi::class . ':ModificarUno');
        
