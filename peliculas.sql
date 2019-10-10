@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2019 a las 08:45:08
+-- Tiempo de generación: 10-10-2019 a las 18:49:46
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.8
 
@@ -19,32 +19,40 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `pp_angular`
+-- Base de datos: `parcial_uno`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `productos`
+-- Estructura de tabla para la tabla `peliculas`
 --
 
-CREATE TABLE `productos` (
+CREATE TABLE `peliculas` (
   `id` int(11) NOT NULL,
-  `descripcion` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `tipo` varchar(20) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `fecha_vencimiento` varchar(20) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `precio` int(11) DEFAULT NULL,
-  `ruta_foto` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL
+  `nombre` varchar(40) COLLATE utf8_spanish2_ci NOT NULL,
+  `tipo` varchar(15) COLLATE utf8_spanish2_ci NOT NULL,
+  `fechaEstreno` varchar(30) COLLATE utf8_spanish2_ci NOT NULL,
+  `cantidadPublico` int(11) NOT NULL,
+  `fotoPelicula` varchar(60) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `peliculas`
+--
+
+INSERT INTO `peliculas` (`id`, `nombre`, `tipo`, `fechaEstreno`, `cantidadPublico`, `fotoPelicula`) VALUES
+(1, 'Volver Al Futuro', 'Ciencia Ficcion', '26/12/1985', 1000000, '/img/1-VolverAlFuturo.jpg'),
+(11, 'Volver Al Futuro', 'Ciencia Ficcion', '26/12/1985', 1000000, './src/img/11-VolverAlFuturo.jpg');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `productos`
+-- Indices de la tabla `peliculas`
 --
-ALTER TABLE `productos`
+ALTER TABLE `peliculas`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -52,10 +60,10 @@ ALTER TABLE `productos`
 --
 
 --
--- AUTO_INCREMENT de la tabla `productos`
+-- AUTO_INCREMENT de la tabla `peliculas`
 --
-ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `peliculas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
