@@ -37,6 +37,7 @@ class Pelicula
             		
             return $consulta->execute();
     }
+
     public static function TraerPelicula($id) 
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
@@ -52,5 +53,33 @@ class Pelicula
 			$consulta =$objetoAccesoDato->RetornarConsulta("select * from peliculas WHERE 1=1");
 			$consulta->execute();			
 			return $consulta->fetchAll(PDO::FETCH_CLASS, "Pelicula");		
+    }
+    
+    public static function BorrarPelicula($id) 
+	{
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM peliculas WHERE id = $id");
+			$consulta->execute();
+			return $consulta->rowCount();				
+    }
+
+    public function ModificarPelicula()
+	{
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta("
+				update peliculas 
+				set nombre=:nombre,
+                tipo=:tipo,
+                fechaEstreno=:fechaEstreno,
+                cantidadPublico=:cantidadPublico,
+                fotoPelicula=:fotoPelicula
+				WHERE id=:id");
+			$consulta->bindValue(':id',$this->id, PDO::PARAM_INT);
+			$consulta->bindValue(':nombre',$this->nombre, PDO::PARAM_STR);
+			$consulta->bindValue(':tipo', $this->tipo, PDO::PARAM_STR);
+            $consulta->bindValue(':fechaEstreno', $this->fechaEstreno, PDO::PARAM_STR);
+            $consulta->bindValue(':cantidadPublico', $this->cantidadPublico, PDO::PARAM_INT);
+			$consulta->bindValue(':fotoPelicula', $this->fotoPelicula, PDO::PARAM_STR);
+			return $consulta->execute();
 	}
 }

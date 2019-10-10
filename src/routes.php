@@ -1,6 +1,5 @@
 <?php
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
+
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
 
@@ -12,12 +11,12 @@ $app = new \Slim\App(["settings" => $config]);
 //get
 
 $app->group('/pelicula', function () {
- 
+
     $this->get('/', \PeliculaApi::class . ':traerTodos');
-   
+
     $this->get('/{id}', \PeliculaApi::class . ':traerUno');
     $this->post('/', \PeliculaApi::class . ':CargarUno');
-    //$this->delete('/', \usuarioApi::class . ':BorrarUno');
-    //$this->put('/', \usuarioApi::class . ':ModificarUno');
-       
-  });
+    $this->delete('/', \PeliculaApi::class . ':BorrarUno');
+    $this->put('/', \PeliculaApi::class . ':ModificarUno');
+
+});
